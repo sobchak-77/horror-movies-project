@@ -1,5 +1,5 @@
 const API_KEY = '4cbe9351-c987-4d00-8c3b-9e4ca7a89477';
-const API_URL = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=ZOMBIE_THEME&page=2';
+const API_URL = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=ZOMBIE_THEME&page=1';
 const PAGE = document.getElementById('page');
 
 // -------------------------
