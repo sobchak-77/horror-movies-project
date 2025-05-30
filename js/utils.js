@@ -38,7 +38,7 @@ export function getLoader() {
   const loaderWrap = getBox('loader');
   const loaderImg = getImg(
     'loader__img',
-    '../img/bats.png',
+    'img/bats.png',
     'So scarry loader image'
   );
 
