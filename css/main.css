@@ -17,7 +17,8 @@ html {
 }
 
 :root {
-  ---horror-color: #3a0b61;
+  --horror-color: #3a0b61;
+  --gold-color: #ffd80e;
 }
 
 .page {
@@ -36,22 +37,19 @@ html {
 .img-style {
   display: block;
   max-width: 100%;
-  width: 100px;
-  height: 100px;
+  height: auto;
   object-fit: cover;
 }
 
 .modal-window {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   z-index: 90;
   width: 100%;
-  height: 100vh;
   overflow-y: auto;
   background-color: rgb(0, 0, 0, 0.5);
-  transition: opacity 0.3s ease-in-out,
-    visibility 0.3s ease-in-out;
+  transition: opacity 0.3s linear,
+    visibility 0.3s linear;
 }
 
 .hidden {
@@ -80,11 +78,10 @@ html {
 
 .header__title {
   margin: 0;
-  color: var(---horror-color);
+  color: var(--horror-color);
   font-size: 56px;
   font-family: "Shadows Fright", sans-serif;
   letter-spacing: 4px;
-  text-wrap: balance;
   text-shadow: 0px 0px 4px white;
 }
 
@@ -97,18 +94,19 @@ html {
 /* --- button --- */
 
 .header__btn {
-  z-index: 100;
+  z-index: 80;
   align-self: flex-start;
+  flex-shrink: 0;
   width: 50px;
   height: 50px;
   padding: 0;
-  background-color: var(---horror-color);
+  background-color: var(--horror-color);
   border-radius: 100px;
   border: none;
   outline: none;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out,
-    transform 0.6s ease-in-out;
+  transition: background-color 0.3s,
+    transform 0.6s linear;
 }
 
 .header__btn--closed {
@@ -144,6 +142,10 @@ html {
 /* --- CONTENT --- */
 /* -------------- */
 
+.products {
+  padding-bottom: 20px;
+}
+
 .catalog {
   display: flex;
   flex-wrap: wrap;
@@ -154,55 +156,102 @@ html {
   list-style: none;
 }
 
+/* --- notice text --- */
+
+.notice-txt {
+  padding-top: 20px;
+  text-align: center;
+}
+
+.notice-txt__txt {
+  margin: 0;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 600;
+}
+
+/* --- loader image --- */
+
+.loader {
+  position: absolute;
+  top: calc(50% - 100px);
+  right: calc(50% - 100px);
+}
+
+.loader__img {
+  width: 200px;
+  height: 200px;
+  animation: pulse 2.3s infinite linear;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  25% {
+    transform: scale(1.3);
+    opacity: 0.95;
+  }
+
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  75% {
+    transform: scale(1.3);
+    opacity: 0.95;
+  }
+}
+
 /* ------------------ */
 /* --- FILM CARD --- */
 /* ---------------- */
 
-.catalog__item {
+.film-card {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   max-width: 240px;
+  height: 100%;
+  min-height: 550px;
 }
 
 /* --- card image --- */
 
-.catalog__cover-wrap {
+.film-card__cover-wrap {
   position: relative;
   min-height: 360px;
 }
 
-.catalog__cover {
-  display: block;
-  max-width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  object-fit: cover;
+.film-card__cover {
+  border-radius: 8px;
 }
 
 /* --- image dark background --- */
 
-.catalog__cover--darkened {
+.film-card__dark-cover {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  inset: 0;
   z-index: 1;
   max-width: 100%;
   height: 100%;
-  background-color: #000000;
+  background-color: #000;
   opacity: 0.1;
   transition: background-color 0.2s ease-out;
 }
 
-.catalog__cover--hover {
+.film-card__cover--hover {
   background-color: #808080;
 }
 
 /* --- card text content */
 
-.catalog__info {
+.film-card__bottom {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -210,23 +259,26 @@ html {
   padding: 15px;
 }
 
-.catalog__title {
+.film-card__info {
+  margin-bottom: 10px;
+}
+
+.film-card__title {
   margin: 0;
   color: #fff;
   font-size: 18px;
   line-height: 136%;
 }
 
-.catalog__descr {
+.film-card__descr {
   display: block;
   margin-bottom: 3px;
-  color: #ffd80e;
+  color: var(--gold-color);
   font-size: 14px;
 }
 
-.catalog__price {
+.film-card__price {
   display: block;
-  margin-bottom: 10px;
   color: #fff;
   font-size: 18px;
   font-weight: 600;
@@ -234,40 +286,40 @@ html {
 
 /* --- card button --- */
 
-.catalog__btn {
+.film-card__btn {
   padding: 0;
   padding: 13px 20px;
   border: none;
   font-size: 17px;
   color: white;
-  background-color: var(---horror-color);
+  background-color: var(--horror-color);
   border-radius: 7px;
-  outline: none;
+  outline: 1px solid transparent;
+  outline-offset: 3px;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out,
-    transform 0.6s ease-in-out;
+  transition: background-color 0.3s,
+    transform 0.6s linear;
 }
 
-.catalog__btn:focus-visible {
-  background-color: #420475;
+.film-card__btn:focus-visible {
+  outline-color: #fff;
 }
 
 @media (any-hover: hover) {
-  .catalog__btn:hover {
+  .film-card__btn:hover {
     background-color: #420475;
   }
 }
 
-.catalog__btn:active {
+.film-card__btn:active {
   transform: scale(0.9);
 }
 
 /* --- card info --- */
 
-.catalog__btn-info {
+.film-card__btn-info {
   position: absolute;
   top: 10px;
-  right: 0;
   left: 10px;
   z-index: 15;
   display: flex;
@@ -281,10 +333,11 @@ html {
   background-color: #1a191f;
   border: 1px solid whitesmoke;
   cursor: pointer;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.6s linear,
+    border-color 0.3s;
 }
 
-.catalog__btn-info:active {
+.film-card__btn-info:active {
   transform: scale(0.9);
 }
 
@@ -293,16 +346,10 @@ html {
 /* -------------------- */
 
 .shopping-cart__inner {
-  position: relative;
-  z-index: 10;
-  top: 5%;
-  left: 0;
-  right: 0;
-  bottom: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 0 auto;
+  margin: 100px auto 20px auto;
   max-width: 620px;
   min-height: 400px;
   background-color: #1a191f;
@@ -310,7 +357,7 @@ html {
   box-shadow: 0px 0px 8px 1px grey;
   overflow-y: hidden;
   transform: scale(1);
-  transition: transform 0.6s ease-in-out;
+  transition: transform 0.3s linear;
 }
 
 .shopping-cart.hidden .shopping-cart__inner {
@@ -334,64 +381,64 @@ html {
   line-height: 22px;
 }
 
-.shopping-cart__item {
+.film-card-shop {
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
+  gap: 120px;
   margin: 6px;
   padding: 15px;
   border: 1px solid grey;
   border-radius: 6px;
 }
 
-.shopping-cart__img {
+.film-card-shop__img {
   flex-shrink: 0;
+  width: 100px;
+  height: 100px;
 }
 
-.shopping-cart__title {
-  align-self: center;
-  margin: 0;
-  color: #fff;
-  font-size: 18px;
-  line-height: 1.6;
-  font-weight: 600;
-}
-
-.shopping-cart__btn-wrap {
+.film-card-shop__bottom {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 10px;
 }
 
-.shopping-cart__remove-btn {
+.film-card-shop__title {
+  margin: 0;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.film-card-shop__price {
+  color: var(--gold-color);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.film-card-shop__remove-btn {
   align-self: flex-start;
   padding: 8px 14px;
   background-color: grey;
   color: white;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.2;
   border: none;
   border-radius: 6px;
   outline: none;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out,
-    transform 0.6s ease-in-out;
+  transition: background-color 0.3s,
+    transform 0.6s linear;
 }
 
-.shopping-cart__remove-btn:hover {
+.film-card-shop__remove-btn:hover {
   background-color: #a5a5a5;
 }
 
-.shopping-cart__remove-btn:active {
+.film-card-shop__remove-btn:active {
   transform: scale(0.9);
-}
-
-.shopping-cart__price {
-  align-self: center;
-  color: white;
-  font-size: 18px;
-  font-weight: 600;
 }
 
 /* --- order button --- */
@@ -415,18 +462,22 @@ html {
   background-color: #eb5050;
 }
 
-/* ------------------------ */
-/* --- MODAL FILM CARD --- */
-/* ---------------------- */
+/* ----------------------- */
+/* --- FILM CARD INFO --- */
+/* --------------------- */
 
-.modal {
+.modal-info {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 20px;
+  padding: 20px;
 }
 
-.modal__card {
+.modal-info__wrap {
+  margin: auto;
+}
+
+.modal-info__card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -437,99 +488,48 @@ html {
   background-color: #1a191f;
   border-radius: 8px;
   box-shadow: 0px 0px 8px 1px grey;
-  overflow-y: hidden;
-  transform: scale(1);
-  transition: transform 0.6s ease-in-out;
 }
 
-.modal.hidden .modal__card {
-  transform: scale(0);
-}
-
-.modal__img {
+.modal-info__img {
   flex-shrink: 0;
+  width: 100px;
+  height: 100px;
 }
 
-.modal__title {
+.modal-info__title {
   margin: 0;
   color: #ffd80e;
   font-size: 18px;
 }
 
-.modal__descr {
+.modal-info__descr {
   margin: 0;
   color: whitesmoke;
 }
 
-.modal__btn {
+.modal-info__btn {
   align-self: flex-start;
   padding: 10px 30px;
   color: whitesmoke;
-  background-color: var(---horror-color);
+  background-color: var(--horror-color);
   border: none;
   border-radius: 7px;
   outline: none;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out,
-    transform 0.6s ease-in-out;
+  transition: background-color 0.3s,
+    transform 0.6s linear;
 }
 
-.catalog__btn:focus-visible {
+.film-card__btn:focus-visible {
   background-color: #420475;
 }
 
 @media (any-hover: hover) {
-  .modal__btn:hover {
+  .modal-info__btn:hover {
     background-color: #420475;
   }
 }
 
-.modal__btn:active {
+.modal-info__btn:active {
   transform: scale(0.9);
-}
-
-/* ---------------------- */
-/* --- MEDIA QUERIES --- */
-/* -------------------- */
-
-@media (max-width: 1050px) {
-  .catalog {
-    justify-content: space-around;
-  }
-}
-
-@media (max-width: 820px) {
-  .header__title {
-    max-width: 400px;
-  }
-
-  .shopping-cart__inner {
-    max-width: 620px;
-    margin-top: 67px;
-  }
-}
-
-@media (max-width: 630px) {
-  .header__title {
-    max-width: 240px;
-    font-size: 32px;
-  }
-
-  .shopping-cart__inner {
-    margin-right: 20px;
-    margin-left: 20px;
-  }
-
-  .shopping-cart__item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .shopping-cart__title {
-    align-self: flex-start;
-  }
-
-  .shopping-cart__btn-wrap {
-    gap: 10px;
-  }
 }

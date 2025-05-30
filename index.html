@@ -5,10 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Horror Movies Online Shop</title>
+  <!-- fonts -->
   <link rel="preload" href="fonts/ShadowsFrightRegular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+  <!-- styles -->
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/media.css">
 </head>
 
 <body class="page" id="page">
@@ -16,7 +19,7 @@
     <div class="header__container container">
       <h1 class="header__title">
         <a class="header__logo" href="#">
-          Horror Movies Online Shop
+          Horror Movies Shop
         </a>
       </h1>
       <button class="header__btn header__btn--closed" id="header-btn"></button>
@@ -25,14 +28,14 @@
   
   <main class="main">
     <section class="products">
-      <div class="products__container container">
-        <ul class="products__catalog catalog"></ul>
-        <div class="products__modal modal" id="modal"></div>
+      <div class="products__container container" id="page-container">
+        <ul class="products__catalog catalog" id="catalog"></ul>
+        <div class="products__modal-info modal-info modal-window hidden" id="modal-info"></div>
       </div>
     </section>
   </main>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js" type="module"></script>
 </body>
 
 </html>
